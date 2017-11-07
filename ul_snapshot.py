@@ -1,6 +1,8 @@
+# coding=utf-8
 # python3.3
 # ul_snapshot.py
 # version-1.3.3 2016-05-24 at 09:04 -  EST
+
 
 # GNU (cl) 2016 @rovest, free to use and improve. Not for sale.
 # Only tested with python 3.3 on OS X 10.10
@@ -19,6 +21,7 @@
 #                    Fixed: bug where old Markdown files and folder where not deleted.
 #                    Now, markdown is made to fresh Temp folder, then rsynced to final destination.
 # Update 2015-01-15: Replacement of Unicode LF to Markdown 2 x spaces + LF, now done in XSLT
+# Update 2017-11-07: Added "clean_title()" inside "def rename_group()"
 
 # This Python script takes a snapshot of all Ulysses III Sheets,
 # to a readable folder structure, named with Group and Sheet titles.
@@ -191,7 +194,7 @@ def rename_group(root, group, num):
         group_title = "Untitled"
 
     if group_path.endswith("-ulgroup"):
-        group_title = str(num).zfill(2) + " - " + group_title
+        group_title = str(num).zfill(2) + " - " + clean_title(group_title)
         os.rename(group_path, group_path[:-40] + group_title)
     return group_title
 
@@ -550,6 +553,11 @@ ulysse2markdown_xslt = """<?xml version='1.0'?>
                 <xsl:text>![Image](Media/</xsl:text>
                 <xsl:value-of select="."/>
                 <xsl:text> "")</xsl:text>
+            </xsl:when>
+            <xsl:when test="@type='keywords'">
+                <xsl:value-of select="@type"/>
+                <xsl:text>: @</xsl:text>
+                <xsl:value-of select="."/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="@type"/>

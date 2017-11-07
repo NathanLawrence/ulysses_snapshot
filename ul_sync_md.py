@@ -1,3 +1,4 @@
+# encoding=utf-8
 # python3.3
 # ul_sync_md.py
 
@@ -31,8 +32,11 @@ md_mac_path = HOME + "Dropbox/My Notes/UL Mac Markdown"
 
 ul_icloud_path = HOME + "Library/Mobile Documents/X5AZV975AG~com~soulmen~ulysses3/"\
                       + "Documents/Library/"
-ul_mac_path = HOME + "Library/Containers/com.soulmen.ulysses3/Data/"\
-                   + "Documents/Library/"
+# "Library/Mobile Documents/X5AZV975AG~com~soulmen~ulysses3/Documents/Library"
+
+#ul_mac_path = HOME + "Library/Containers/com.soulmen.ulysses3/Data/"\
+#                   + "Documents/Library/"
+ul_mac_path = HOME + "Library/Group Containers/X5AZV975AG.com.soulmen.shared/Ulysses/Documents/Library"
 
 
 def main():
@@ -141,8 +145,8 @@ def notify(message):
         # Uses "terminal-notifier", download at:
         # https://github.com/downloads/alloy/terminal-notifier/terminal-notifier_1.4.2.zip
         # Only works with OS X 10.8+
-        subprocess.call(['/Applications/terminal-notifier.app/Contents/MacOS/terminal-notifier',
-                         '-message', message, "-title", title])
+        subprocess.call(['/Applications/terminal-notifier',
+                         '-message', message, "-title", title, '-sound', 'default'])
     except:
         print('* "terminal-notifier.app" is missing!')
 

@@ -1,8 +1,7 @@
 # coding=utf-8
 # python3.3
 # ul_snapshot.py
-# version-1.3.3 2016-05-24 at 09:04 -  EST
-
+# version-1.3.4 2017-11-07 at 09:44 -  CET
 
 # GNU (cl) 2016 @rovest, free to use and improve. Not for sale.
 # Only tested with python 3.3 on OS X 10.10
